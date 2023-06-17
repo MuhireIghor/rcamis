@@ -21,9 +21,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "enrollment")
 public class Enrol implements Serializable{
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -34,15 +34,15 @@ public class Enrol implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "semester_id")
 	private Semester semester;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "enrollment_level_id")
 	private EnrollmentLevel enrollmentLevel;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "academic_year_id")
 	private AcademicYear academicYear;
-	
+
 	public AcademicYear getAcademicYear() {
 		return academicYear;
 	}
@@ -61,7 +61,7 @@ public class Enrol implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "course_id")
 	private Course course;
-	
+
 
 	public int getId() {
 		return id;
@@ -69,10 +69,10 @@ public class Enrol implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public Student getStudent() {
 		return student;
-	}  
+	}
 	public void setStudent(Student student) {
 		this.student = student;
 	}
@@ -95,8 +95,8 @@ public class Enrol implements Serializable{
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
-	
-	
+
+
 	public Semester getSemester() {
 		return semester;
 	}
@@ -104,7 +104,7 @@ public class Enrol implements Serializable{
 		this.semester = semester;
 	}
 	public Enrol() {
-		
+
 	}
 	public Enrol(Date enrollmentDate, double grade, Student student, Course course, Semester semester, EnrollmentLevel level, AcademicYear academicYear) {
 		this.enrollmentDate = enrollmentDate;
@@ -115,5 +115,5 @@ public class Enrol implements Serializable{
 		this.enrollmentLevel = level;
 		this.academicYear = academicYear;
 	}
-	
+
 }

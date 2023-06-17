@@ -26,7 +26,7 @@
 						</option>
 					</c:forEach>
 				</select>
-				<input type="submit" name="saveDataUser" value="Create User" class="block bg-blue-300 w-full p-4 rounded text-white text-center " />
+				<input type="submit" name="saveDataUser" value="Create User" class="block bg-blue-500 w-full p-4 rounded text-white text-center " />
 				<p class="text-center">Already have an account?<a class="text-blue-500" href="/rcamis_war_exploded/">Log in</a></p>
 
 			</div>

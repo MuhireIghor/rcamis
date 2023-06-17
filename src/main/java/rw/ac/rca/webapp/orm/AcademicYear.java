@@ -19,14 +19,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "academic_year")
-public class AcademicYear {
-	
+public class AcademicYear{
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String code;
 	private String name;
-	
+
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "academicYear")
 	private List<Enrol> enrols;
 
@@ -34,6 +34,7 @@ public class AcademicYear {
 		this.code = code;
 		this.name = name;
 	}
+	public AcademicYear(){}
 
 	public int getId() {
 		return id;

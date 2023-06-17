@@ -1,28 +1,24 @@
 package rw.ac.rca.webapp.web;
-
 import rw.ac.rca.webapp.dao.CourseDAO;
+import rw.ac.rca.webapp.dao.UserDAO;
 import rw.ac.rca.webapp.dao.impl.CourseDAOImpl;
 import rw.ac.rca.webapp.orm.Course;
-
+import rw.ac.rca.webapp.orm.User;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 /**
  * Servlet implementation class CreateCourse
  */
 public class CreateCourse extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private CourseDAO courseDao = CourseDAOImpl.getInstance();
-
+    private  CourseDAO courseDAO = CourseDAOImpl.getInstance();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,60 +26,66 @@ public class CreateCourse extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String pageInfo = request.getParameter("page");
-        HttpSession session = request.getSession();
-        if (pageInfo != null) {
-            if (pageInfo.equals("createcourse")) {
-                if (request.getParameter("saveDataCourse") != null) {
-                    Course course = new Course();
-                    String courseName = request.getParameter("coursename");
-                    int minStudent = Integer.parseInt(request.getParameter("minStudent"));
-                    int maxStudent = Integer.parseInt(request.getParameter("minStudent"));
-                    String dateIn = request.getParameter("startDate");
-                    String dateEnd = request.getParameter("endDate");
-                    String isCancelled = request.getParameter("isCancelled");
-                    try {
-                        course.setMinStudent(minStudent);
-                        course.setMaxStudent(maxStudent);
-                        course.setName(courseName);
-                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                        try {
-                            Date date1 = dateFormat.parse(dateIn);
-                            Date date2 = dateFormat.parse(dateEnd);
-                            course.setStart(date1);
-                            course.setEnd(date2);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-
-                        }
-                        course.setCancelled(isCancelled.equals(("NO")));
-                        courseDao.saveOrUpdateCourse(course);
-                        session.setAttribute("message", "Course created successfully");
-                    } catch (Exception e) {
-                        session.setAttribute("message", "Can't create");
-                    }
-
-                }
-                request.getRequestDispatcher("WEB-INF/createcourse.jsp").forward(
-                        request, response);
-
+        // TODO Auto-generated method stub
+        String pageRedirect = request.getParameter("page");
+        HttpSession httpSession = request.getSession();
+        Object user = httpSession.getAttribute("authenticatedUser");
+        System.out.println("The user in session is: " + user);
+        if (pageRedirect != null) {
+            System.out.println("The print statement is and the only is: " + pageRedirect);
+            if (pageRedirect.equals("createcourse")) {
+                request.getRequestDispatcher("WEB-INF/createcourse.jsp").forward(request, response);
+            } else {
+                request.setAttribute("error ", "No user found");
+                request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
             }
+        } else {
+            request.setAttribute("error ", "No user found");
+            request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
         }
-
     }
-        /**
-         * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-         */
-        protected void doPost (HttpServletRequest request, HttpServletResponse response) throws
-        ServletException, IOException {
-            // TODO Auto-generated method stub
-            doGet(request, response);
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pageRedirect = request.getParameter("page");
+        HttpSession httpSession = request.getSession();
+        Object user = httpSession.getAttribute("authenticatedUser");
+        if(pageRedirect != null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            if(pageRedirect.equals("createcourse")){
+                Course course = null;
+                try {
+                    course = new Course(
+                            request.getParameter("coursename"),
+                            request.getParameter("code"),
+                            Integer.parseInt(request.getParameter("minStudent")),
+                            Integer.parseInt(request.getParameter("maxStudent")),
+                            simpleDateFormat.parse(request.getParameter("startDate")),
+                            simpleDateFormat.parse(request.getParameter("endDate")),
+                            false
+                    );
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                // Saving the course;
+                try {
+                    courseDAO.saveCourse(course);
+                    request.setAttribute("success" , "Successfully created the Course" );
+                    request.getRequestDispatcher("WEB-INF/createcourse.jsp").forward(request , response);
+                }catch (Exception e){
+                    request.setAttribute("error" , "Failed to create the Course" );
+                    request.getRequestDispatcher("WEB-INF/createcourse.jsp").forward(request , response);
+                }
+            }else{
+                request.getRequestDispatcher("WEB-INF/login.jsp").forward(request , response);
+            }
+        }else{
+            request.getRequestDispatcher("WEB-INF/login.jsp").forward(request , response);
         }
-
     }
+}

@@ -8,31 +8,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Aphrodice Rwagaju
  *
  */
 @Entity
-@Table(name = "course")
+@Table(name = "courses")
 public class Course implements Serializable{
-	
+
 	/**
-	 * 
+	 *
 	 */
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,8 +38,7 @@ public class Course implements Serializable{
 	@JoinTable(name = "course_instructor", joinColumns = {@JoinColumn(name="course_id")}, inverseJoinColumns = {@JoinColumn(name="instructor_id")})
 	private Set<Instructor> instructors;
 
-	public Course() {
-	}
+
 	public Set<Instructor> getInstructors() {
 		return instructors;
 	}
@@ -106,7 +93,7 @@ public class Course implements Serializable{
 	public void setCancelled(boolean isCancelled) {
 		this.isCancelled = isCancelled;
 	}
-	
+
 
 	public List<Enrol> getEnrols() {
 		return enrols;
@@ -114,10 +101,17 @@ public class Course implements Serializable{
 	public void setEnrols(List<Enrol> enrols) {
 		this.enrols = enrols;
 	}
-	
 
-
-	
-	
-
+	public Course() {
+	}
+	public Course(String name, String code, int minStudent, int maxStudent, Date start, Date end,
+				  boolean isCancelled) {
+		this.name = name;
+		this.code = code;
+		this.minStudent = minStudent;
+		this.maxStudent = maxStudent;
+		this.start = start;
+		this.end = end;
+		this.isCancelled = isCancelled;
+	}
 }

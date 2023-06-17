@@ -47,7 +47,6 @@ public class CreateUser extends HttpServlet {
 				
 					try {
 						String hashedPsw = Util.generateHashed512(passwordauth);
-
 						user.setUsername(usernameauth);
 						user.setPassword(hashedPsw);
 						user.setFullName(userfullname);
@@ -55,6 +54,7 @@ public class CreateUser extends HttpServlet {
 						user.setUserRole(usrr);
 						userDAO.saveOrUpdateUser(user);
 						httpSession.setAttribute("message", "Created successfully");
+						httpSession.setAttribute("username",user.getUsername());
 					} catch (Exception e) {
 						httpSession.setAttribute("message", "Can't Create");
 					}

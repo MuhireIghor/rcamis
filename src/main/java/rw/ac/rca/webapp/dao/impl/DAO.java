@@ -18,7 +18,7 @@ public class DAO {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return session
 	 */
 	public static Session getSession() {
@@ -41,9 +41,9 @@ public class DAO {
 
 	/**
 	 * rolls back for failed transaction closes databases connection
-	 * 
+	 *
 	 * @throws HibernateException
-	 * 
+	 *
 	 */
 	protected void rollback() {
 		try {
@@ -55,7 +55,7 @@ public class DAO {
 			close();
 		}
 	}
-	
+
 	protected void close() {
 		try {
 			getSession().close();
@@ -63,9 +63,9 @@ public class DAO {
 			System.out.println("Cannot close: " + e.toString());
 		}
 	}
-	
+
 	public void clear() {
-        getSession().clear();
-    }
+		getSession().clear();
+	}
 
 }

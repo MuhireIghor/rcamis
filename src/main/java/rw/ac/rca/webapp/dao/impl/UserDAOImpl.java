@@ -44,7 +44,7 @@ public class UserDAOImpl extends DAO implements UserDAO {
 
 	/**
 	 * saves user
-	 * 
+	 *
 	 * @return user
 	 * @throws Exception
 	 */
@@ -64,7 +64,7 @@ public class UserDAOImpl extends DAO implements UserDAO {
 
 	/**
 	 * updates user
-	 * 
+	 *
 	 * @return user
 	 * @throws Exception
 	 */
@@ -83,7 +83,7 @@ public class UserDAOImpl extends DAO implements UserDAO {
 
 	/**
 	 * saves or updates user
-	 * 
+	 *
 	 * @return user
 	 * @throws Exception
 	 */
@@ -102,15 +102,16 @@ public class UserDAOImpl extends DAO implements UserDAO {
 
 	/**
 	 * deletes user
-	 * 
+	 *
 	 * @return true
 	 * @return false
 	 * @throws Exception
 	 */
 	@Override
-	public boolean deleteUser(User user) {
+	public boolean deleteUser(int userid) {
 		try {
 			begin();
+			User user = (User) getSession().get(User.class, userid);
 			getSession().delete(user);
 			commit();
 			return true;
@@ -122,7 +123,7 @@ public class UserDAOImpl extends DAO implements UserDAO {
 
 	/**
 	 * gets user by id
-	 * 
+	 *
 	 * @return user
 	 * @throws Exception
 	 */
@@ -143,7 +144,7 @@ public class UserDAOImpl extends DAO implements UserDAO {
 
 	/**
 	 * gets all users
-	 * 
+	 *
 	 * @return list users
 	 * @throws Exception
 	 */
@@ -164,20 +165,20 @@ public class UserDAOImpl extends DAO implements UserDAO {
 
 	/**
 	 * gets user by username
-	 * 
+	 *
 	 * @return users the list of users
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getUserByUsername(String username) {
+	public User getUserByUsername(String username) {
 		try {
 			begin();
 			Query query = getSession().createQuery("from User where username= :ref");
 			query.setString("ref", username);
-			List<User> users = query.list();
+			User user = (User) query.uniqueResult();
 			commit();
-			return users;
+			return user;
 		} catch (Exception e) {
 			rollback();
 			return null;
@@ -186,7 +187,7 @@ public class UserDAOImpl extends DAO implements UserDAO {
 
 	/**
 	 * gets users by name
-	 * 
+	 *
 	 * @return users the list of users
 	 * @throws Exception
 	 */
@@ -266,4 +267,18 @@ public class UserDAOImpl extends DAO implements UserDAO {
 		}
 	}
 
+	@Override
+	public User getUserByEmailAddress(String email) {
+		try {
+			begin();
+			Query query = getSession().createQuery("FROM User usr WHERE usr.email = :email");
+			query.setString("email", email);
+			User user = (User) query.uniqueResult();
+			commit();
+			return user;
+		} catch (Exception e) {
+			rollback();
+			return null;
+		}
+	}
 }

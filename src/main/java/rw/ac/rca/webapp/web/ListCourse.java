@@ -37,8 +37,8 @@ public class ListCourse extends HttpServlet {
 		String pageRedirect = request.getParameter("page");
 
 		HttpSession httpSession = request.getSession();
-		Object user = httpSession.getAttribute("authenticatedCourse");
-		System.out.println("The user in session is: " + user);
+		Object course = httpSession.getAttribute("authenticatedCourse");
+		System.out.println("The user in session is: " + course);
 
 		if (pageRedirect != null) {
 			if (pageRedirect.equals("createcourse") && request.getParameter("action").equals("list")) {

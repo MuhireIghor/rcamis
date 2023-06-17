@@ -20,21 +20,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "enrollment_level")
 public class EnrollmentLevel {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String code;
 	private String name;
-	
+
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "enrollmentLevel")
 	private List<Enrol> enrols;
-	
+
 	public EnrollmentLevel(String code, String name) {
 		this.code = code;
 		this.name = name;
 	}
-	
+
+	public EnrollmentLevel() {
+	}
+
 	public List<Enrol> getEnrols() {
 		return enrols;
 	}

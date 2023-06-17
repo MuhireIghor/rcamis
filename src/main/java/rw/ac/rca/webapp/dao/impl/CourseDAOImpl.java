@@ -15,7 +15,6 @@ import rw.ac.rca.webapp.orm.Course;
  *
  */
 public class CourseDAOImpl extends DAO implements CourseDAO {
-	public static final Logger LOG = Logger.getLogger(CourseDAOImpl.class);
 
 	private static CourseDAOImpl instance;
 
@@ -29,7 +28,7 @@ public class CourseDAOImpl extends DAO implements CourseDAO {
 			return instance;
 		}
 	}
-	
+
 	public Course saveCourse(Course course) {
 		try {
 			begin();
@@ -61,8 +60,6 @@ public class CourseDAOImpl extends DAO implements CourseDAO {
 			commit();
 			return course;
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 			rollback();
 			return null;
 		}
@@ -112,6 +109,58 @@ public class CourseDAOImpl extends DAO implements CourseDAO {
 		} catch (Exception e) {
 			rollback();
 			return null;
+		}
+	}
+
+	@Override
+	public Course getCourseByName(String name) {
+		try {
+			begin();
+			Query query = getSession().createQuery(
+					"from Course where name= :name");
+			query.setString("name", name);
+			Course course = (Course) query.uniqueResult();
+			commit();
+			return course;
+		} catch (Exception e) {
+			rollback();
+			return null;
+
+		}
+	}
+
+	@Override
+	public Course getCourseByCode(String code) {
+		try {
+			begin();
+			Query query = getSession().createQuery(
+					"from Course where code= :code");
+			query.setString("code", code);
+			Course course = (Course) query.uniqueResult();
+			commit();
+			return course;
+		} catch (Exception e) {
+			rollback();
+			return null;
+
+		}
+	}
+
+	@Override
+	public Course getCourseByNameAndCode(String name, String code) {
+		try {
+			begin();
+			Query query = getSession().createQuery(
+					"from Course where name= :name and code= :code");
+			query.setString("name", name);
+			query.setString("code", code);
+			Course course = (Course) query.uniqueResult();
+			commit();
+			return course;
+		} catch (Exception e) {
+			rollback();
+			return null;
+
 		}
 	}
 }

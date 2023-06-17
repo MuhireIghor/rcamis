@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 		}
 
 		if ((password == null || password.equals("")) && (username == null || username.equals(""))) {
-			usernotfound = "Usernwme & password can't be empty";
+			usernotfound = "Username & password can't be empty";
 		}
 
 		if (usernotfound != null) {

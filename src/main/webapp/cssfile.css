@@ -407,6 +407,9 @@ html ul.tabs li.active,html ul.tabs li.active a:hover,html ul.tabs li.active a
 .tab_content {
 	padding: 0;
 }
+a{
+	text-decoration: none;
+}
 
 .clear-block:after {
 	content: ".";

@@ -3,14 +3,19 @@
  */
 package rw.ac.rca.webapp.util;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  * @author Aphrodice Rwagaju
  * 
  */
+
 public class Util {
 
 	public static String generateHashedString(String psw) {
@@ -52,7 +57,7 @@ public class Util {
 		}
 		return out;
 	}
-	
+
 	public static String staticGeneratedHash512(String st) {
 		MessageDigest md;
 		String out = "";
@@ -81,4 +86,20 @@ public class Util {
 		return out;
 	}
 
+	public static void setCookie(HttpServletResponse response, String name, String value) {
+		// set cookie
+		Cookie cookie = new Cookie(name, value);
+		cookie.setMaxAge(60 * 60 * 24 * 365); // 1 year
+		response.addCookie(cookie);
+	}
+
+	public static Date parseDate(String startDate) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			return dateFormat.parse(startDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null; // Or handle the exception according to your needs
+		}
+	}
 }

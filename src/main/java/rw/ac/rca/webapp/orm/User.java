@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import rw.ac.rca.webapp.util.UserRole;
 
@@ -23,7 +24,7 @@ import rw.ac.rca.webapp.util.UserRole;
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
-	
+
 	/**
 	 * @return the serialversionuid
 	 */
@@ -32,17 +33,21 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	//	uniqueness of username and email
+	@NotNull
 	@Column(nullable = false, unique = true)
 	private String username;
+	@NotNull
+	@Column(nullable = false)
 	private String password;
+	@NotNull
+	@Column(nullable = false)
 	private String fullName;
-
+	@Column(nullable = false, unique = true)
 	private String email;
 	@Enumerated(EnumType.ORDINAL)
 	private UserRole userRole;
@@ -53,7 +58,8 @@ public class User implements Serializable {
 	/**
 	 * @return the id
 	 */
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}
@@ -69,7 +75,7 @@ public class User implements Serializable {
 	/**
 	 * @return the username
 	 */
-
+	@Column(nullable = false, unique = true)
 	public String getUsername() {
 		return username;
 	}
@@ -86,7 +92,7 @@ public class User implements Serializable {
 	/**
 	 * @return the password
 	 */
-
+	@Column(nullable = false)
 	public String getPassword() {
 		return password;
 	}
@@ -117,7 +123,7 @@ public class User implements Serializable {
 	/**
 	 * @return the email
 	 */
-
+	@Column(nullable = false, unique = true)
 	public String getEmail() {
 		return email;
 	}
@@ -136,7 +142,7 @@ public class User implements Serializable {
 	public String toString() {
 		return getUsername() +" "+ getFullName();
 	}
-	
+
 	/**
 	 * @return the userRole
 	 */

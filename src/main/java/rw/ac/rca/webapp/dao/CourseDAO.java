@@ -19,5 +19,8 @@ public interface CourseDAO {
 	public boolean deleteCourse(Course course);
 	public Course getCourseById(int courseId);
 	public List<Course> getAllCourses();
+	public Course getCourseByName(String name);
+	public Course getCourseByCode(String code);
+	public  Course getCourseByNameAndCode(String name, String code);
 
 }

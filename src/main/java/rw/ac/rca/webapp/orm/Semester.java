@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Table(name = "semester")
 public class Semester  implements Serializable{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -35,10 +35,10 @@ public class Semester  implements Serializable{
 	private Date endDate;
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "semester")
 	private List<Enrol> enrols;
-	
+
 	public Semester() {
 	}
-	
+
 	public Semester(String code, String name, Date startDate, Date endDate) {
 		this.code = code;
 		this.name = name;

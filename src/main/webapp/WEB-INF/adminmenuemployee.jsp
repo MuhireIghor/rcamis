@@ -5,9 +5,9 @@
 			href="listinstructors.php?page=instructors&&user_role=empl&&action=list"><img
 						src="icons/application_view_list.png" /> Instructors</a>
 		</li>
-		<li><a class="idTabs" href="#evaluations"><img
+		<li><a class="" href="#evaluations"><img
 				src="icons/application_side_expand.png" /> Evaluation Tracking</a>
-			<ul class="noJS">
+			<ul class="">
 				<li><a
 					href="listevaluations.php?page=evaluations&&action=list"><img
 						src="icons/application_view_list.png" /> Discipline status</a></li>

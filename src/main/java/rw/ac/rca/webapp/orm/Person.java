@@ -18,7 +18,7 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 public abstract class Person implements Serializable{
-	
+
 	private static final long serialVersionUID = 2173199134252447177L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
@@ -27,7 +27,7 @@ public abstract class Person implements Serializable{
 	private String lastName;
 	private Date dateOfBirth;
 	private String phoneNumber;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -35,7 +35,7 @@ public abstract class Person implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	@Column(nullable = false)
 	public String getFirstName() {
 		return firstName;
@@ -44,7 +44,7 @@ public abstract class Person implements Serializable{
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	//@Column(nullable = false)
 	public String getLastName() {
 		return lastName;
@@ -61,7 +61,7 @@ public abstract class Person implements Serializable{
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -69,7 +69,7 @@ public abstract class Person implements Serializable{
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+
 	public Person() {
 	}
 
