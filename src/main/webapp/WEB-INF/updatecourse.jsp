@@ -7,74 +7,65 @@
 <jsp:include page="headeradmin.jsp"><jsp:param
         name="title" value="Update Course" />
 </jsp:include>
-<div id="middle">
-  <h2 style="text-align: left;">
-    <b>Enter Course Details</b>
-  </h2>
-  <c:if test="${message != null}">
-    <fieldset>
-      <h3>
-        <span style="color: red"> ${message}</span>
-      </h3>
-    </fieldset>
-  </c:if>
-  <form action="updatecourse.php?page=updatecourse&&id=${course.id}" method="post">
-    <table>
-      <tr>
-        <td align="right"><b><t:field mandatory="yes"
-                                      text="Coursename"></t:field></b></td>
-        <td align="left"><input type="text" value="${course.name}" size="25" maxlength="50"
-                                name="name" id="name" /></td>
-      </tr>
-      <tr>
-        <td align="right"><b><t:field mandatory="yes"
-                                      text="Code"></t:field></b></td>
-        <td align="left"><input type="text" size="25"
-                                maxlength="50" value="${course.code}" name="code" id="code" /></td>
-      </tr>
-      <tr>
-        <td align="right"><b>Minimum Students</b></td>
-        <td align="left"><input type="number" size="50" maxlength="50"
-                                value="${course.minStudent}" name="minStudent" id="minStudent" /></td>
-      </tr>
-      <tr>
-        <td align="right"><b>Maximum Students</b></td>
-        <td align="left"><input type="number" size="50" maxlength="50"
-                                value="${course.maxStudent}"   name="maxStudent" id="maxStudents" /></td>
-      </tr>
-      <tr>
-        <td align="right"><b>Date In</b></td>
-        <td align="left"><input type="date" size="50" maxlength="50"
-                                value="${start}"   name="dateIn" id="dateIn" /></td>
-      </tr>
-      <tr>
-        <td align="right"><b>Date End</b></td>
-        <td align="left"><input type="date" size="50" maxlength="50"
-                                value="${end}"   name="dateEnd" id="dateEnd" /></td>
-      </tr>
-      <tr>
-        <td align="right"><b>Is Canceled</b></td>
-        <c:choose>
-          <c:when test="${course.isCancelled()}">
+<div id="bg-white w-full">
+  <div class="flex items-center justify-center w-full">
+    <form action="updatecourse.php?page=updatecourse&&id=${course.id}" method="post" class="w-1/2 mx-auto h-2/3 bg-white shadow-md shadow-indigo-200 border border-blue-500 rounded" >
+      <div class="w-full flex justify-center">
 
-            <td>Yes <input type="radio" value="YES" name="isCanceled" id="isYes" checked></td>
-            <td>Yes <input type="radio" value="NO" name="isCanceled" id="isNo"></td>
-          </c:when>
-          <c:otherwise>
-            <td>No <input type="radio" value="NO" name="isCanceled" id="isNo" checked></td>
-            <td>Yes <input type="radio" value="YES" name="isCanceled" id="isYes" ></td>
-          </c:otherwise>
-        </c:choose>
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-white shadow-md">
+          <img src="images/rcalogo.png" alt="rcalog" class="object-fit" width="50" height="60"/>
+        </div>
+
+      </div>
+      <div class="flex flex-col space-y-4 p-4 w-2/3 mx-auto">
+        <p  class="text-center text-xl text-blue-500">
+          <b>Enter Course Details</b>
+        </p>
+        <c:if test="${message != null}">
+
+          <p class="text-center text-red-500">
+           ${message}
+          </p>
+
+        </c:if>
+
+            <input type="text" value="${course.name}" size="25" maxlength="50"
+                                    name="name" id="name"  class="block border rounded w-full outline-none p-2" />
 
 
-      </tr>
-      <tr>
-        <td align="right">&nbsp;</td>
-        <td align="left"><input type="submit" name="updateCourse"
-                                value="Update Course" /></td>
-      </tr>
-    </table>
-  </form>
+          <input type="text" size="25"
+                                    maxlength="50" value="${course.code}" name="code" id="code"  class="block border rounded w-full outline-none p-2" />
+        <input type="number" size="50" maxlength="50"
+                                    value="${course.minStudent}" name="minStudent" id="minStudent"  class="block border rounded w-full outline-none p-2" />
+<input type="number" size="50" maxlength="50"
+                                    value="${course.maxStudent}"   name="maxStudent" id="maxStudents"  class="block border rounded w-full outline-none p-2" />
+  <input type="date" size="50" maxlength="50"
+                                    value="${start}"   name="dateIn" id="dateIn"  class="block border rounded w-full outline-none p-2" />
+   <input type="date" size="50" maxlength="50"
+                                    value="${end}"   name="dateEnd" id="dateEnd"  class="block border rounded w-full outline-none p-2" />
+
+    <p>Is Canceled</p>
+            <c:choose>
+              <c:when test="${course.isCancelled()}">
+
+                <p>Yes <input type="radio" value="YES" name="isCanceled" id="isYes" checked ></p>
+                <p>Yes <input type="radio" value="NO" name="isCanceled" id="isNo"></p>
+              </c:when>
+              <c:otherwise>
+                <p>No <input type="radio" value="NO" name="isCanceled" id="isNo" checked></p>
+                <p>Yes <input type="radio" value="YES" name="isCanceled" id="isYes" ></p>
+              </c:otherwise>
+            </c:choose>
+
+
+<input type="submit" name="updateCourse"
+                                    value="Update Course"   class="block bg-blue-500 w-full p-4 rounded text-white text-center " />
+
+      </div>
+
+    </form>
+
+  </div>
 
 </div>
 <%@ include file="footer.jsp"%>

@@ -21,11 +21,14 @@
 		<div class="w-1/4 bg-white space-y-4 ">
 			<p class="text-center text-blue-500">Quick Links</p>
 			<div class="bg-white shadow-md sahdow-purple-900 rounded">
-				<a  href="createcourse.php?page=createcourse&action=list"><p class="p-6 rounded text-blue-500 flex items-center justify-center">View Courses</p></a>
+				<a  href="listcourses.php?page=createcourse&action=list"><p class="p-6 rounded text-blue-500 flex items-center justify-center">View Courses</p></a>
 			</div>
 			<div class="bg-white shadow-md sahdow-purple-900 rounded">
 				<a href="createcourse.php?page=createcourse"><p class="p-6 rounded text-blue-500 flex items-center justify-center">View Marks</p></a>
 			</div>
+            <div class="bg-white shadow-md sahdow-purple-900 rounded">
+                <a href="listuser.php?page=users&action=list"><p class="p-6 rounded text-blue-500 flex items-center justify-center">View Users</p></a>
+            </div>
 
 		</div>
 	</div>

@@ -57,11 +57,11 @@
         <url-pattern>/login.php</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>Updatecourse</servlet-name>
-        <servlet-class>rw.ac.rca.webapp.web.Updatecourse</servlet-class>
+        <servlet-name>UpdateCourse</servlet-name>
+        <servlet-class>rw.ac.rca.webapp.web.UpdateCourse</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Updatecourse</servlet-name>
+        <servlet-name>UpdateCourse</servlet-name>
         <url-pattern>/updatecourse.php</url-pattern>
     </servlet-mapping>
    

@@ -6,12 +6,12 @@
 </head>
 
 <div class="w-full flex justify-end">
-    <input type="text" placeholder="Search user" class="p-4 w-1/4 outline-none border-2 border-gray-200 mr-20 rounded" />
+    <input type="text" placeholder="Search" class="p-4 w-1/4 outline-none border-2 border-gray-200 mr-20 rounded" />
     <a href="createuser.php?page=createuser">
         <button class="bg-blue-900 p-6 rounded text-white flex items-center justify-center">Create User</button>
     </a>
-    <a href="listuser.php?page=users&&action=list">
-        <button class="bg-blue-900 p-6 rounded text-white flex items-center justify-center">List Users</button>
+    <a href="createcourse.php?page=createcourse">
+        <button class="bg-blue-900 p-6 rounded text-white flex items-center justify-center">Create Course</button>
     </a>
 
 

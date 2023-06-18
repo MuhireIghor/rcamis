@@ -21,12 +21,12 @@
             <c:if test="${authenticatedUser !=null}">
             <div class="w-2/4 flex justify-evenly py-2 ">
                 <a href="listuser.php?page=profile&&id=${authenticatedUser.id}">
-                    <button class="bg-blue-900 p-6 rounded text-white flex items-center justify-center">Profile
+                    <button class="bg-blue-900 py-6 px-12 rounded text-white flex items-center justify-center">Profile
                     </button>
-                </a> <img src="icons/user.png"/>
+                </a>
                 <p class="font-semibold ">${authenticatedUser.userRole}:${authenticatedUser.fullName}</p>
                 <a href="login.php?logout=logout">
-                    <button class="bg-blue-900 p-6 rounded text-white flex items-center justify-center">Logout</button>
+                    <button class="bg-blue-900 py-6 px-12 rounded text-white flex items-center justify-center">Logout</button>
                 </a>
             </div>
         </div>
@@ -46,31 +46,32 @@
             <p class="text-center text-blue-500 text-xl my-4">Registered Courses</p>
             <form action="listuser.php?page=statusapproval" method="post">
                 <table class="w-full bg-white ">
-                    <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>Code</td>
-                        <td>Max Students</td>
-                        <td>Min Students</td>
-                        <td>Date IN</td>
-                        <td>Date End</td>
-                        <td>Is Cancelled</td>
+                    <thead class="bg-purple-900 ">
+                    <tr class="border border-black">
+                        <td class="border border-black">ID</td>
+                        <td class="border border-black">Name</td>
+                        <td class="border border-black">Code</td>
+                        <td class="border border-black">Max Students</td>
+                        <td class="border border-black">Min Students</td>
+                        <td class="border border-black">Date IN</td>
+                        <td class="border border-black">Date End</td>
+                        <td class="border border-black">Is Cancelled</td>
+                        <td class="border border-black" colspan="2">Status</td>
                     </tr>
                     </thead>
                     <tbody class="bg-white">
                     <c:forEach items="${courses}" var="course" varStatus="usrstatus">
                         <tr class="bg-white border border-black">
-                            <td>${course.id}</td>
-                            <td>${course.name}</td>
-                            <td>${course.code}</td>
-                            <td>${course.maxStudent}</td>
-                            <td>${course.minStudent}</td>
-                            <td>${course.start}</td>
-                            <td>${course.end}</td>
-                            <td>${course.isCancelled()}</td>
-                            <td><a href="updatecourse.php?page=updatecourse&&id=${course.id}">Update</a></td>
-                            <td><a href="deletecourse.php?page=deletecourse&&id=${course.id}">Delete</a></td>
+                            <td class="border border-black">${course.id}</td>
+                            <td class="border border-black">${course.name}</td>
+                            <td class="border border-black">${course.code}</td>
+                            <td class="border border-black">${course.maxStudent}</td>
+                            <td class="border border-black">${course.minStudent}</td>
+                            <td class="border border-black">${course.start}</td>
+                            <td class="border border-black">${course.end}</td>
+                            <td class="border border-black">${course.isCancelled()}</td>
+                            <td class="border border-black"><a href="updatecourse.php?page=updatecourse&&id=${course.id}">Update</a></td>
+                            <td class="border border-black"><a href="deletecourse.php?page=deletecourse&&id=${course.id}">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>

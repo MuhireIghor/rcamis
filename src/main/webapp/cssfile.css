@@ -410,6 +410,9 @@ html ul.tabs li.active,html ul.tabs li.active a:hover,html ul.tabs li.active a
 a{
 	text-decoration: none;
 }
+.spanLink{
+	column-span: 2;
+}
 
 .clear-block:after {
 	content: ".";
